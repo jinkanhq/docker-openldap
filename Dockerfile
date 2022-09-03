@@ -13,9 +13,11 @@ RUN apt-get update && \
 ADD https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-${OPENLDAP_VERSION}.tgz /src/
 ADD https://www.openldap.org/software/download/OpenLDAP/openldap-release/openldap-${OPENLDAP_VERSION}.tgz.asc /src/
 RUN cd src && \
+    gpg --keyserver keyserver.ubuntu.com  --recv 7F67D5FD1CE1CBCE && \
     gpg --verify openldap-${OPENLDAP_VERSION}.tgz.asc && \
     tar xf openldap-${OPENLDAP_VERSION}.tgz -C /src && \
     rm openldap-${OPENLDAP_VERSION}.tgz && \
+    cd /src && \
     ./configure --enable-wrappers --enable-crypt --enable-spasswd \
     --enable-modules --enable-argon2 --enable-overlays
 RUN cd src && make depend
