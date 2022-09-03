@@ -25,7 +25,7 @@ RUN cd src && make
 # RUN cd src && make test
 
 
-FROM debian:11 AS prod
+FROM debian:11
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y gzip ca-certificates libcom-err2 \
