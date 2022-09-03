@@ -1,4 +1,4 @@
-name: Build
+name: Build Feature Release
 
 on:
   push:
@@ -10,8 +10,11 @@ on:
     branches:
       - 'main'
 
+env:
+  OPENLDAP_VERSION=2.6.3
+
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,11 +27,8 @@ jobs:
             jinkanhq/openldap
             ghcr.io/jinkanhq/openldap
           tags: |
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            type=raw,value=feature
+            type=raw,value=${{ env.OPENLDAP_VERSION }}
             type=sha
       - name: Set up Docker Buildx
         id: buildx
@@ -53,6 +53,8 @@ jobs:
         id: docker_build_base
         with:
           context: .
+          build-contexts: |
+            OPENLDAP_VERSION=${{ env.OPENLDAP_VERSION }}
           file: Dockerfile
           load: false
           push: false

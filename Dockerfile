@@ -22,7 +22,6 @@ RUN cd src && \
     --enable-modules --enable-argon2 --enable-overlays
 RUN cd src && make depend
 RUN cd src && make
-# RUN cd src && make test
 RUN cd src && make install
 
 

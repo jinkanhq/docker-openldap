@@ -1,3 +1,8 @@
+![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build)
+![](https://img.shields.io/docker/pulls/jinkanhq/openldap)
+![](https://img.shields.io/docker/v/jinkanhq/openldap)
+![](https://img.shields.io/badge/license-OpenLDAP%20License-green)
+
 # OpenLDAP Docker Image
 
 Out of box OpenLDAP docker image based on Debian Stable.
@@ -100,4 +105,8 @@ The following is the recommended cipher suite in OpenSSL format.
 ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA38
 ```
 
+---
+
 ![Included OpenLDAP](https://www.openldap.org/images/powered/openldap-inc.gif)
+
+![](https://jinkan.org/img/jinkan_logo_hori_grad.png)
