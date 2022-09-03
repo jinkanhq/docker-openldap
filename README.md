@@ -1,6 +1,8 @@
-![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build)
+![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build%20Feature%20Release)
+![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build%20LTS%20Release)
 ![](https://img.shields.io/docker/pulls/jinkanhq/openldap)
-![](https://img.shields.io/docker/v/jinkanhq/openldap)
+![](https://img.shields.io/docker/v/jinkanhq/openldap/feature)
+![](https://img.shields.io/docker/v/jinkanhq/openldap/lts)
 ![](https://img.shields.io/badge/license-OpenLDAP%20License-green)
 
 # OpenLDAP Docker Image
