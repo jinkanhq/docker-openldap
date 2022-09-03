@@ -1,4 +1,4 @@
-FROM debian:11 AS builder
+FROM debian:11 AS base
 ARG OPENLDAP_VERSION=2.6.3
 ENV OPENLDAP_VERSION=$OPENLDAP_VERSION
 RUN apt-get update && \
@@ -25,7 +25,7 @@ RUN cd src && make
 RUN cd src && make test
 
 
-FROM debian:11
+FROM debian:11 AS prod
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y gzip ca-certificates libcom-err2 \
