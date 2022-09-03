@@ -3,12 +3,11 @@ name: Build LTS Release
 on:
   push:
     branches:
-      - '**'
-    tags:
-      - 'v*.*.*'
-  pull_request:
-    branches:
-      - 'main'
+      - main
+    paths:
+      - Dockerfile
+      - entrypoint.sh
+      - .github/workflows/lts.yml
 
 env:
   OPENLDAP_VERSION: 2.5.13
