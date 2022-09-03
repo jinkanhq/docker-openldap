@@ -15,7 +15,7 @@ ADD https://www.openldap.org/software/download/OpenLDAP/openldap-release/openlda
 RUN cd src && \
     gpg --keyserver keyserver.ubuntu.com  --recv 7F67D5FD1CE1CBCE && \
     gpg --verify openldap-${OPENLDAP_VERSION}.tgz.asc && \
-    tar xf openldap-${OPENLDAP_VERSION}.tgz -C /src && \
+    tar xf openldap-${OPENLDAP_VERSION}.tgz -C /src --strip 1 && \
     rm openldap-${OPENLDAP_VERSION}.tgz && \
     cd /src && \
     ./configure --enable-wrappers --enable-crypt --enable-spasswd \
