@@ -1,15 +1,20 @@
-[![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build%20Feature%20Release)](https://github.com/jinkanhq/docker-openldap/actions/workflows/feature.yml)
-[![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build%20LTS%20Release)](https://github.com/jinkanhq/docker-openldap/actions/workflows/lts.yml)
 [![](https://img.shields.io/docker/pulls/jinkanhq/openldap)](https://hub.docker.com/r/jinkanhq/openldap)
-[![](https://img.shields.io/docker/v/jinkanhq/openldap/feature)](https://hub.docker.com/r/jinkanhq/openldap)
-[![](https://img.shields.io/docker/v/jinkanhq/openldap/lts)](https://hub.docker.com/r/jinkanhq/openldap)
 [![](https://img.shields.io/badge/license-OpenLDAP%20License-green)](https://github.com/jinkanhq/docker-openldap/blob/main/LICENSE)
 
 # OpenLDAP Docker Image
 
 OpenLDAP Software is an open source implementation of the Lightweight Directory Access Protocol.
 
-Out of box OpenLDAP docker image based on Debian Stable.
+Out of box OpenLDAP docker image based on Debian Stable with two releases.
+
+* Feature Release: `latest`
+
+  [![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build%20Feature%20Release)](https://github.com/jinkanhq/docker-openldap/actions/workflows/feature.yml)
+  [![](https://img.shields.io/docker/v/jinkanhq/openldap/feature)](https://hub.docker.com/r/jinkanhq/openldap)
+* LTS Release: `lts`
+   
+  [![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build%20LTS%20Release)](https://github.com/jinkanhq/docker-openldap/actions/workflows/lts.yml)
+  [![](https://img.shields.io/docker/v/jinkanhq/openldap/lts)](https://hub.docker.com/r/jinkanhq/openldap)
 
 ## Example
 

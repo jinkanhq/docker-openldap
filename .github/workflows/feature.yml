@@ -27,7 +27,7 @@ jobs:
             jinkanhq/openldap
             ghcr.io/jinkanhq/openldap
           tags: |
-            type=raw,value=feature
+            type=raw,value=latest
             type=raw,value=${{ env.OPENLDAP_VERSION }}
             type=sha
       - name: Set up Docker Buildx
