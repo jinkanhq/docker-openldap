@@ -109,4 +109,4 @@ ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM
 
 ![Included OpenLDAP](https://www.openldap.org/images/powered/openldap-inc.gif)
 
-![](https://jinkan.org/img/jinkan_logo_hori_grad.png)
+<img src="https://jinkan.org/img/jinkan_logo_hori_grad.png" alt="Jinkan" width="180px">
