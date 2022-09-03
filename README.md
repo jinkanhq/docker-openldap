@@ -9,8 +9,8 @@ Out of box OpenLDAP docker image based on Debian Stable with two releases.
 
 * Feature Release: `latest`
 
-  [![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap?sort=semver)](https://github.com/jinkanhq/docker-openldap/actions/workflows/feature.yml)
-  [![](https://img.shields.io/docker/v/jinkanhq/openldap/feature)](https://hub.docker.com/r/jinkanhq/openldap)
+  [![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build%20Feature%20Release)](https://github.com/jinkanhq/docker-openldap/actions/workflows/feature.yml)
+  [![](https://img.shields.io/docker/v/jinkanhq/openldap?sort=semver)](https://hub.docker.com/r/jinkanhq/openldap)
 
 * LTS Release: `lts`
    
