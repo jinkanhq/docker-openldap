@@ -76,3 +76,4 @@ jobs:
             type=gha,scope=prod
           cache-to: |
             type=gha,scope=prod,mode=max
+          target: prod

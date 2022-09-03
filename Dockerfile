@@ -23,9 +23,10 @@ RUN cd src && \
 RUN cd src && make depend
 RUN cd src && make
 # RUN cd src && make test
+RUN cd src && make install
 
 
-FROM debian:11
+FROM debian:11 AS prod
 RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y gzip ca-certificates libcom-err2 \
@@ -33,10 +34,10 @@ RUN apt-get update && \
     libkrb5support0 libltdl7 libnsl2 libnss3-tools libodbc1 libperl5.32 \
     libsasl2-2 libssl1.1 libtirpc3 libwrap0 mdbtools procps psmisc \
     libssl1.1 libwrap0 libsodium23
-COPY --from=base /usr/local/lib/ /usr/local/lib/
-COPY --from=base /usr/local/libexec/ /usr/local/libexec/
-COPY --from=base /usr/local/sbin/ /usr/local/sbin/
-COPY --from=base /usr/local/etc/ /usr/local/etc/
+COPY --from=base /usr/local/lib /usr/local/lib
+COPY --from=base /usr/local/libexec /usr/local/libexec
+COPY --from=base /usr/local/sbin /usr/local/sbin
+COPY --from=base /usr/local/etc /usr/local/etc
 COPY entrypoint.sh /
 COPY dhparam /usr/local/etc/openldap/
 RUN chmod +x entrypoint.sh
