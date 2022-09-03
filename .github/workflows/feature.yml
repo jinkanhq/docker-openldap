@@ -53,7 +53,7 @@ jobs:
         id: docker_build_base
         with:
           context: .
-          build-contexts: |
+          build-args: |
             OPENLDAP_VERSION=${{ env.OPENLDAP_VERSION }}
           file: Dockerfile
           load: false
