@@ -69,9 +69,9 @@ services:
       - ./data:/usr/local/var/openldap-data
 ```
 
-# Environment Variables
+## Environment Variables
 
-## Basic
+### Basic
 
 | Variable | Description | Default |
 | :------- | :---------- | :------ |
@@ -82,7 +82,7 @@ services:
 | LDAP_ROOT_PASSWORD | Root password | `admin` |
 | LDAP_DEBUG_LEVEL | [Debug level](https://www.openldap.org/doc/admin26/runningslapd.html) | `stats` |
 
-## TLS
+### TLS
 
 | Variable | Description | Default |
 | :------- | :---------- | :------ |
@@ -95,19 +95,19 @@ services:
 | LDAP_TLS_SSF | [Security strength factor](https://www.openldap.org/doc/admin26/security.html#Security%20Strength%20Factors) | `ssf=128` |
 | LDAP_TLS_VERIFY_CLIENT | What checks to perform on client certificates | `never` |
 
-### TLS Defaults
+#### TLS Defaults
 
 These defaults follow [Mozilla](https://ssl-config.mozilla.org/)'s
 recommendations. The *Intermediate* configuration is chosen as defaults for
 general purpose.
 
 
-#### DH Parameter
+##### DH Parameter
 
 `https://ssl-config.mozilla.org/ffdhe2048.txt` is saved in
 `/usr/local/etc/openldap/dhparam` as the default DH parameter.
 
-#### Cipher Suite
+##### Cipher Suite
 
 The following is the recommended cipher suite in OpenSSL format.
 
@@ -115,7 +115,7 @@ The following is the recommended cipher suite in OpenSSL format.
 ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA38
 ```
 
-# Contact
+## Contact
 
 For more detailed documentation see https://github.com/jinkanhq/docker-openldap
 
