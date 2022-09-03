@@ -1,11 +1,13 @@
-![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build%20Feature%20Release)
-![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build%20LTS%20Release)
-![](https://img.shields.io/docker/pulls/jinkanhq/openldap)
-![](https://img.shields.io/docker/v/jinkanhq/openldap/feature)
-![](https://img.shields.io/docker/v/jinkanhq/openldap/lts)
-![](https://img.shields.io/badge/license-OpenLDAP%20License-green)
+[![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build%20Feature%20Release)](https://github.com/jinkanhq/docker-openldap/actions/workflows/feature.yml)
+[![](https://img.shields.io/github/workflow/status/jinkanhq/docker-openldap/Build%20LTS%20Release)](https://github.com/jinkanhq/docker-openldap/actions/workflows/lts.yml)
+[![](https://img.shields.io/docker/pulls/jinkanhq/openldap)](https://hub.docker.com/r/jinkanhq/openldap)
+[![](https://img.shields.io/docker/v/jinkanhq/openldap/feature)](https://hub.docker.com/r/jinkanhq/openldap)
+[![](https://img.shields.io/docker/v/jinkanhq/openldap/lts)](https://hub.docker.com/r/jinkanhq/openldap)
+[![](https://img.shields.io/badge/license-OpenLDAP%20License-green)](https://github.com/jinkanhq/docker-openldap/blob/main/LICENSE)
 
 # OpenLDAP Docker Image
+
+OpenLDAP Software is an open source implementation of the Lightweight Directory Access Protocol.
 
 Out of box OpenLDAP docker image based on Debian Stable.
 
@@ -106,6 +108,12 @@ The following is the recommended cipher suite in OpenSSL format.
 ```
 ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA38
 ```
+
+# Contact
+
+For more detailed documentation see https://github.com/jinkanhq/docker-openldap
+
+Please report issues on https://github.com/jinkanhq/docker-openldap/issues
 
 ---
 
