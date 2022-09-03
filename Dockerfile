@@ -26,11 +26,11 @@ RUN cd src && make test
 FROM debian:11
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y gzip libc6 libevent-2.1-6 ca-certificates libcom-err2 \
+    apt-get install -y gzip ca-certificates libcom-err2 \
     libcrypt1 libgssapi-krb5-2 libk5crypto3 libkeyutils1 libkrb5-3 \
     libkrb5support0 libltdl7 libnsl2 libnss3-tools libodbc1 libperl5.32 \
     libsasl2-2 libssl1.1 libtirpc3 libwrap0 mdbtools procps psmisc \
-    libssl1.1 libwrap0 libsodium23 make
+    libssl1.1 libwrap0 libsodium23
 COPY --from=builder /usr/local/lib /usr/local/lib
 COPY --from=builder /usr/local/libexec /usr/local/libexec
 COPY --from=builder /usr/local/sbin /usr/local/sbin
