@@ -62,6 +62,7 @@ jobs:
           cache-to: |
             type=gha,scope=base,mode=max
           outputs: type=docker,dest=/tmp/build.tar
+          tags: jinkanhq/openldap-builder
           target: base
       - name: Upload artifact
         uses: actions/upload-artifact@v3
@@ -99,4 +100,4 @@ jobs:
         name: Load image
         run: |
           docker load --input /tmp/build.tar
-          docker run --rm -w /src jinkanhq/openldap make test
+          docker run --rm -w /src jinkanhq/openldap-builder make test
