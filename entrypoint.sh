@@ -50,6 +50,15 @@ LDAP_TLS_CIPHER_SUITE=${LDAP_TLS_CIPHER_SUITE:-${TLS_INTERMEDIATE_CIPHER_SUITE}}
 LDAP_TLS_SSF=${LDAP_TLS_SSF:-${DEFAULT_SSF}}
 LDAP_TLS_VERIFY_CLIENT=${LDAP_TLS_VERIFY_CLIENT:-never}
 
+# memberof overlay configuration
+LDAP_MEMBEROF_ENABLED=${LDAP_MEMBEROF_ENABLED:-false}
+LDAP_MEMBEROF_GROUP_OC=${LDAP_MEMBEROF_GROUP_OC:-groupOfUniqueNames}
+LDAP_MEMBEROF_MEMBER_AD=${LDAP_MEMBEROF_MEMBER_AD:-uniqueMember}
+LDAP_MEMBEROF_MEMBEROF_AD=${LDAP_MEMBEROF_MEMBEROF_AD:-memberOf}
+LDAP_MEMBEROF_DN=${LDAP_MEMBEROF_DN:-$LDAP_ROOT_DN}
+LDAP_MEMBEROF_DANGLING=${LDAP_MEMBEROF_DANGLING:-ignore}
+LDAP_MEMBEROF_REFINT=${LDAP_MEMBEROF_REFINT:-FALSE}
+
 debug() {
   if [ $DEBUG == "true" ]; then
     echo -e "\033[33m[DEBUG]\033[0m $1"
@@ -72,6 +81,41 @@ get_mdb_dn() {
 
 get_mdb_dbnum() {
   echo $(slapcat -n 0 -a '(objectClass=olcDatabaseConfig)' -F $SLAPD_CONFIG_DIRECTORY | grep -oP "(?<=dn: olcDatabase=\{)(.+)(?=\}mdb)")
+}
+
+enable_memberof_overlay() {
+  if [ -f $SLAPD_CONFIG_DIRECTORY/overlay-memberof.enabled ]; then
+    return 0
+  fi
+  MDB_DN=$(get_mdb_dn)
+  cat > $SLAPD_ETC_DIRECTORY/overlay-memberof.ldif <<EOF
+dn: olcOverlay={0}memberof,${MDB_DN}
+objectClass: olcMemberOfConfig
+olcOverlay: memberof
+olcMemberOfGroupOC: ${LDAP_MEMBEROF_GROUP_OC}
+olcMemberOfMemberAD: ${LDAP_MEMBEROF_MEMBER_AD}
+olcMemberOfMemberOfAD: ${LDAP_MEMBEROF_MEMBEROF_AD}
+olcMemberOfDangling: ${LDAP_MEMBEROF_DANGLING}
+olcMemberOfRefInt: ${LDAP_MEMBEROF_REFINT}
+EOF
+  debug "\"memberof\" overlay is enabled."
+  slapadd -n 0 -F $SLAPD_CONFIG_DIRECTORY -l $SLAPD_ETC_DIRECTORY/overlay-memberof.ldif
+  touch $SLAPD_CONFIG_DIRECTORY/overlay-memberof.enabled
+}
+
+disable_memberof_overlay() {
+  DN=$(slapcat -n 0 -a '(&(objectClass=olcOverlayConfig)(olcOverlay=memberof))' -F $SLAPD_CONFIG_DIRECTORY | grep dn || true)
+  if [ "$DN" == "" ]; then
+    return 0
+  fi
+  MDB_DBNUM=$(get_mdb_dbnum)
+  cat > $SLAPD_ETC_DIRECTORY/overlay-memberof.ldif <<EOF
+dn: olcOverlay={0}memberof,${MDB_DN}
+changetype: delete
+EOF
+  debug "\"memberof\" overlay is disabled."
+  slapmodify -n 0 -F $SLAPD_CONFIG_DIRECTORY -l $SLAPD_ETC_DIRECTORY/overlay-memberof.ldif
+  rm $SLAPD_CONFIG_DIRECTORY/overlay-memberof.enabled
 }
 
 init_slapd_organization() {
@@ -293,6 +337,12 @@ EOF
   OLD_LDAP_SUFFIX=$(<$SLAPD_CONFIG_DIRECTORY/suffix)
   delete_slapd_entry $(get_mdb_dbnum) $OLD_LDAP_SUFFIX
   init_slapd_organization
+fi
+
+if [ $LDAP_MEMBEROF_ENABLED == "true" ]; then
+  enable_memberof_overlay
+else
+  disable_memberof_overlay
 fi
 
 run_slapd

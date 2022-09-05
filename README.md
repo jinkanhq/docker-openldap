@@ -76,7 +76,7 @@ services:
 | Variable | Description | Default |
 | :------- | :---------- | :------ |
 | DEBUG | Entrypoint debug mode | `false` |
-| LDAP_ORGANIZATION | Organization name| `Example` |
+| LDAP_ORGANIZATION | Organization name | `Example` |
 | LDAP_DOMAIN | Organization domain | `example.com` |
 | LDAP_ROOT_CN | Root common name | `admin` |
 | LDAP_ROOT_PASSWORD | Root password | `admin` |
@@ -114,6 +114,30 @@ The following is the recommended cipher suite in OpenSSL format.
 ```
 ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA38
 ```
+
+### Overlays
+
+Overlays are components that provide hooks to functions analogous to those
+provided by backends. All official overlays are compiled statically into this
+image.
+
+#### Reverse Group Membership Maintenance
+
+The `memberOf` overlay provides maintenance of the list of groups an entry is
+a member of. It updates an attribute on entry whenever changes occur to the
+membership.
+
+| Variable | Description | Default |
+| :------- | :---------- | :------ |
+| LDAP_MEMBEROF_ENABLED | Enable the `memberOf` overlay | `false` |
+| LDAP_MEMBEROF_GROUP_OC | The `objectClass` of group | `groupOfUniqueNames` |
+| LDAP_MEMBEROF_MEMBER_AD | The attribute name of group contains member names | `uniqueMember` |
+| LDAP_MEMBEROF_MEMBEROF_AD | The attribute name of member entry indicates membership | `Example` |
+| LDAP_MEMBEROF_DN | `modifiersName` for membership modifications | Identical to `LDAP_ROOT_CN` |
+| LDAP_MEMBEROF_DANGLING | Behavior to handle dangling reference | `ignore` |
+| LDAP_MEMBEROF_REFINT | Whether to preserve referential integrity | `FALSE` |
+
+For details, see `slapo-memberof(5)` and [OpenLDAP documentation](https://www.openldap.org/doc/admin26/overlays.html#Reverse%20Group%20Membership%20Maintenance).
 
 ## Contact
 
